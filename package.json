@@ -1,6 +1,6 @@
 {
   "name": "latex-sanitizer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A string sanitizer that produces latex compatible strings",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,10 @@
     "parser"
   ],
   "author": "Max Stauss",
+  "contributors": { 
+    "name" : "Faase",
+    "url" : "http://faase.org/"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/maxxst/latex-sanitizer/issues"
