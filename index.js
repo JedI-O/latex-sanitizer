@@ -1,5 +1,5 @@
 var lescape = require('escape-latex');
-var encArray = require('./lib/t1.js');
+var encArray = require('./lib/t1_ts1.js');
 var binaryIndexOf = require('./vendor/binaryIndexOf');
 
 // %% \CharacterTable

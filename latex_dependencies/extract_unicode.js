@@ -12,7 +12,7 @@ var fs = require('fs')
 var EXTRACT_UNICODE_REGEX = /DeclareUnicodeCharacter\{(.*?)\}/g;
 var matches = [];
 
-fs.readFile('./t1enc.dfu', function (err, data) {
+fs.readFile('./ts1enc.dfu', function (err, data) {
   if (err) throw err;
   var match = EXTRACT_UNICODE_REGEX.exec(data);
   while (match != null) {
@@ -22,9 +22,11 @@ fs.readFile('./t1enc.dfu', function (err, data) {
   console.log(matches.length);
 
   if (matches.length >= 1) {
+    console.log('module.exports = [');
     for (var i = 0; i < matches.length; i++) {
       console.log(matches[i] + ',     // ' + String.fromCharCode(matches[i]) );
     };
+    console.log('];\n');
   }
 
   // if (matches.length >= 1) {
