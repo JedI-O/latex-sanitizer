@@ -1,0 +1,27 @@
+{
+  "name": "latex-sanitizer",
+  "version": "0.0.1",
+  "description": "A string sanitizer that produces latex compatible strings",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maxxst/latex-sanitizer.git"
+  },
+  "keywords": [
+    "latex",
+    "sanitizer",
+    "parser"
+  ],
+  "author": "Max Stauss",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maxxst/latex-sanitizer/issues"
+  },
+  "homepage": "https://github.com/maxxst/latex-sanitizer",
+  "dependencies": {
+    "escape-latex": "^0.1.2"
+  }
+}
