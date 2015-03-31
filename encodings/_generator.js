@@ -1,9 +1,11 @@
-var _ = require('lodash');
-var ascii = require('./asciiEncodingGenerator');
-var t1 = require('./t1');
+// Quick and dirty generator so I can copy and paste from command line
+
+var _        = require('lodash');
+var ascii    = require('./ascii');
+var t1       = require('./t1');
 var textcomp = require('./textcomp');
 
-matches = _.union(ascii, t1, textcomp).sort(function(a, b) {
+matches = _.union(ascii, t1).sort(function(a, b) {
   return a - b;
 });
 
