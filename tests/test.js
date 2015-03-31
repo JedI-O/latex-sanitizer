@@ -4,4 +4,4 @@ var str = 'Hallo` \'Welt @|l€s\\ & % klar ?ß ¥ œ∑´®†¥¨ˆøπ“‘�
 
 console.log(str);
 
-console.log(sanitizeLatex(str));
+console.log(sanitizeLatex(str, 't1_textcomp'));

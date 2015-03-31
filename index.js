@@ -1,25 +1,31 @@
 var lescape       = require('escape-latex');
-var encArray      = require('./lib/t1_textcomp.js');
+var encodingList   = require('./encodings/all.js');
 var binaryIndexOf = require('./vendor/binaryIndexOf');
 
 
-var sanitizeLatex = function(str){
+var sanitizeLatex = function(str, encoding){
+  // dynamicly load the right encoding
+  if (typeof encoding === 'undefined' || typeof encodingList[encoding] === 'undefined') {
+    encoding = encodingList.t1;
+  } else {
+    encoding = encodingList[encoding];
+  }
+
+  // return string starts empty
   var text = '';
   var index = -1;
 
   for (var i = 0; i < str.length; i++) {
     
-    //var specialChar = NON_STANDARD_REGEX.exec(str[i]);
+    // every char has to be checked 
     var char = str[i];
-
-    if (char != null) {
-      //console.log(char);
-      index = binaryIndexOf.call(encArray, char.charCodeAt(0));
-      if(index !== -1) {
-        text += lescape(char);
-      }
-    } else {
-      text += lescape(str[i]);
+      
+    // per definition all encodings are sorted lists
+    // so a binary search is the fastest option
+    index = binaryIndexOf.call(encoding, char.charCodeAt(0));
+    if(index !== -1) {
+      // escape reserved latex characters
+      text += lescape(char);
     }
   }
 
