@@ -1,6 +1,6 @@
 // eine geschickte schnelle treffer suche wäre nice
 
-var fs = require('fs')
+var fs = require('fs');
 
 var EXTRACT_UNICODE_REGEX = /TextSymbol{(.*?)}/g;
 var matches = [];
@@ -16,7 +16,7 @@ fs.readFile('./textcomp.txt', function (err, data) {
 
   for (var i = 0; i < matches.length; i++) {
     console.log(matches[i]);
-  };
+  }
 
   // matches.sort(function(a, b) {
   //   return a - b;

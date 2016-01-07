@@ -67,5 +67,5 @@ module.exports = {
   'textblank': '2422',
   'textopenbullet': '25E6',
   'textbigcircle': '25EF',
-  'textmusicalnote': '266A',
-}
+  'textmusicalnote': '266A'
+};

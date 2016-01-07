@@ -98,5 +98,5 @@ module.exports = [
   'texttwosuperior',
   'textwon',
   'textyen',
-  'textzerooldstyle',
+  'textzerooldstyle'
 ];
