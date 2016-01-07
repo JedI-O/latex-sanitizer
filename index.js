@@ -22,6 +22,7 @@ var sanitizeLatex = function(str, encoding){
       
     // per definition all encodings are sorted lists
     // so a binary search is the fastest option
+    index = binaryIndexOf.call(encoding, char.charCodeAt(0));
     if(index !== -1) {
       // escape reserved latex characters
       text += lescape(char);
