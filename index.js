@@ -15,6 +15,13 @@ var sanitizeLatex = function(str, encoding){
   var text = '';
   var index = -1;
 
+  // additional character replacements
+  var charList = []; //save open chars like left quotes
+
+  var find = ["€","§","²","³","©","®","™","_","<",">"];
+  var replace = ["\\euro","\\S ","$^{2}$", "$^{3}$", "\\copyright","\\textregistered","\\texttrademark","\\_",
+    "\\textless","\\textgreater"];
+
   for (var i = 0; i < str.length; i++) {
     
     // every char has to be checked 
@@ -26,6 +33,26 @@ var sanitizeLatex = function(str, encoding){
     if(index !== -1) {
       // escape reserved latex characters
       text += lescape(char);
+    }
+
+    for(findIndex=0; findIndex<find.length; findIndex++) {
+      if(char==find[findIndex]) {
+        text += replace[findIndex];
+        text += " \\vspace{1cm}";
+        break;
+      }
+    }
+
+    if(char=="\"") {
+      if(charList.indexOf("doubleQuote") == -1) {
+        //add an open double quote to the charList
+        charList.push("doubleQuote");
+        text += "\\glqq";
+      } else {
+        //remove double quote from list
+        charList = charList.splice(charList.indexOf("\""),1);
+        text += "\\grqq{} ";
+      }
     }
   }
 

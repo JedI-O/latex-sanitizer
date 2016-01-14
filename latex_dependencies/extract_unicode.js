@@ -7,7 +7,7 @@ Number.prototype.between  = function (a, b, inclusive) {
 
 // eine geschickte schnelle treffer suche wäre nice
 
-var fs = require('fs')
+var fs = require('fs');
 
 var EXTRACT_UNICODE_REGEX = /DeclareUnicodeCharacter\{(.*?)\}/g;
 var matches = [];
@@ -25,7 +25,7 @@ fs.readFile('./ts1enc.dfu', function (err, data) {
     console.log('module.exports = [');
     for (var i = 0; i < matches.length; i++) {
       console.log(matches[i] + ',     // ' + String.fromCharCode(matches[i]) );
-    };
+    }
     console.log('];\n');
   }
 
