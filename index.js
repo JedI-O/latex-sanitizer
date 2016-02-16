@@ -47,7 +47,7 @@ var sanitizeLatex = function(str, encoding){
       if(charList.indexOf("doubleQuote") == -1) {
         //add an open double quote to the charList
         charList.push("doubleQuote");
-        text += "\\glqq ";
+        text += "\\glqq\ ";
       } else {
         //remove double quote from list
         charList = charList.splice(charList.indexOf("\""),1);
