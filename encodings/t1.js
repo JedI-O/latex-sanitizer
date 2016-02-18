@@ -2,7 +2,7 @@
  * Generated from t1enc.dfu and ascii.js
  */
 module.exports = [
-  32,     //
+  //32,     //
   33,     // !
   //34,     // "
   35,     // #

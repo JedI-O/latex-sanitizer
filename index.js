@@ -18,9 +18,9 @@ var sanitizeLatex = function(str, encoding){
   // additional character replacements
   var charList = []; //save open chars like left quotes
 
-  var find = ["€","§","²","³","©","®","™","_","<",">"];
+  var find = ["€","§","²","³","©","®","™","_","<",">"," "];
   var replace = ["\\euro","\\S ","$^{2}$", "$^{3}$", "\\copyright","\\textregistered","\\texttrademark","\\_",
-    "\\textless","\\textgreater"];
+    "\\textless","\\textgreater", "~"];
 
   for (var i = 0; i < str.length; i++) {
     
@@ -38,7 +38,6 @@ var sanitizeLatex = function(str, encoding){
     for(findIndex=0; findIndex<find.length; findIndex++) {
       if(char==find[findIndex]) {
         text += replace[findIndex];
-        text += " \\vspace{1cm}";
         break;
       }
     }
