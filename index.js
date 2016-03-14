@@ -17,13 +17,13 @@ var sanitizeLatex = function(str, encoding){
 
   // additional character replacements
   var charList = []; //save open chars like left quotes
+  var replaceSpaces = false;
 
-  var find = ["€","§","²","³","©","®","™","_","<",">"," ","ä","ö","ü","Ä","Ö","Ü","ß"];
+  var find = ["€","§","²","³","©","®","™","_","<",">","ä","ö","ü","Ä","Ö","Ü","ß"];
   var replace = ["\\euro","\\S ","$^{2}$", "$^{3}$", "\\copyright","\\textregistered","\\texttrademark","\\_",
-    "\\textless","\\textgreater", "~",
-    "\"a","\"o","\"u","\"A","\"O","\"U","\"s"];
+    "\\textless","\\textgreater", "\"a","\"o","\"u","\"A","\"O","\"U","\"s"];
 
-  for (var i = 0; i < str.length; i++) {
+  for (var i=0; i<str.length; i++) {
     
     // every char has to be checked 
     var char = str[i];
@@ -36,7 +36,7 @@ var sanitizeLatex = function(str, encoding){
       text += lescape(char);
     }
 
-    for(findIndex=0; findIndex<find.length; findIndex++) {
+    for(var findIndex=0; findIndex<find.length; findIndex++) {
       if(char==find[findIndex]) {
         text += replace[findIndex];
         break;
@@ -55,6 +55,8 @@ var sanitizeLatex = function(str, encoding){
         charList = charList.splice(charList.indexOf("\""),1);
         text += "\\grqq{} ";
       }
+    } else if(char==' ') {
+
     }
   }
 
