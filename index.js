@@ -17,11 +17,22 @@ var sanitizeLatex = function(str, encoding){
 
   // additional character replacements
   var charList = []; //save open chars like left quotes
-  var replaceSpaces = false;
 
-  var find = ["€","§","²","³","©","®","™","_","<",">","ä","ö","ü","Ä","Ö","Ü","ß"];
-  var replace = ["\\euro","\\S ","$^{2}$", "$^{3}$", "\\copyright","\\textregistered","\\texttrademark","\\_",
-    "\\textless","\\textgreater", "\"a","\"o","\"u","\"A","\"O","\"U","\"s"];
+  // global replacement of many space chars after each other
+  var followingSpaceChars = /\s{2,}/g;
+  var spaceArray;
+  while ((spaceArray = followingSpaceChars.exec(str)) !== null) {
+    var len = spaceArray[0].length;
+    var newSpaces = '';
+    for(var counter=0; counter<len; counter++) {
+      newSpaces += '␣';
+    }
+    str = str.substr(0, spaceArray.index) + newSpaces + str.substr(spaceArray.index+len);
+  }
+
+  var find = ["€","§","²","³","©","®","™","_","<",">","ä","ö","ü","Ä","Ö","Ü","ß","␣"];
+  var replace = ["\\euro{}","\\S{}","$^{2}$", "$^{3}$", "\\copyright{}","\\textregistered{}","\\texttrademark{}","\\_",
+    "\\textless{}","\\textgreater{}", "\"a","\"o","\"u","\"A","\"O","\"U","\"s","~"];
 
   for (var i=0; i<str.length; i++) {
     
@@ -31,7 +42,7 @@ var sanitizeLatex = function(str, encoding){
     // per definition all encodings are sorted lists
     // so a binary search is the fastest option
     index = binaryIndexOf.call(encoding, char.charCodeAt(0));
-    if(index !== -1) {
+    if(index !== -1 && index !== 126) {
       // escape reserved latex characters
       text += lescape(char);
     }
@@ -55,8 +66,6 @@ var sanitizeLatex = function(str, encoding){
         charList = charList.splice(charList.indexOf("\""),1);
         text += "\\grqq{} ";
       }
-    } else if(char==' ') {
-
     }
   }
 
